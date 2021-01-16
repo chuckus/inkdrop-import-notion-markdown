@@ -7,12 +7,14 @@ Now based off.
 
 ## Todo
 
-- [] Select root notebook to create export in
-- [] Recursively walk through folder
-    - [] Create notebook based on folder, if not exist
-- [] Starting at leaves, import files into folder. 
-    - [] Markdown
-        - [] Import
+- [x] Select root notebook to create export in
+- [ ] Give option of skipping already imported files
+- [ ] Give real time updates of parsing progress
+- [x] Recursively walk through folder
+    - [x] Create notebook based on folder, if not exist
+- [x] Starting at leaves, import files into folder. 
+    - [x] Markdown
+        - [x] Import
             - [] Parse `Created` line
             - [] For any local folder link, look at dict and replace with inkdrop link.
         - [] Generate inkdrop link, and take filename as url encoded and store in dict - this will be useful later
@@ -24,14 +26,34 @@ Now based off.
         - [] Import
         - [] Generate inkdrop link, and take filename as url encoded and store in dict - this will be useful later
     - [] Non-importable
-- [] Jump up into the parent
+- [x] Jump up into the parent
 - [] Metrics
     - [] Num of markdown files created
     - [] Num of images imported
     - [] Num of CSVs not linked
 
+## How to build
+
+### First time
+```
+ipm link --dev
+```
+
+### Iterations
+
+1. Make code change
+
+
 ## Notes
 
-- Should use single global dict for filepath to inkdrop link
-    - This doesn't work with the CSV files, unless I create the CSVs as separate inkdrop items
-        - But is fine if I just replace verbatim on the parsing. That is, instead of storing inkdrop links, I store the actual markdown required for Inkdrop to render those links correctly. So the type of the values is "markdown ready content".
+- Having just done a first run and imported, there are a few issues:
+    - Notion tables - I have lots of tiny notes, that represented entries in table
+    - I need to make it three passes
+        - First pass - 
+            - Check if CSV, if so, continue
+            - Check for headings - if they are ['Name', 'Created', 'Tags', 'Updated'], that is a Notion list. If NOT a Notion list, continue
+            - Identify by markdown file that has same folder name in current folder
+            - Check if Same folder name contents is MD, if so, continue
+            
+- Now that I think about it, why don't I make it a Python script? At least to do all the data conversion into something that Inkdrop can consume
+    - I just know Python more!

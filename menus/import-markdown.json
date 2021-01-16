@@ -6,7 +6,7 @@
         {
           "label": "Import",
           "submenu": [
-            { "label": "from Notion export..", "command": "import-notion-markdown:import-from-folder" }
+            { "label": "from Notion export..", "command": "import-notion-export:import-from-folder" }
           ]
         }
       ]
